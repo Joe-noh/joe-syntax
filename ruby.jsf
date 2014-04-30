@@ -20,7 +20,7 @@
 
 =Symbol		fg_511
 =SymbolEscape	bold red
-=ProcArg	#yellow
+=ProcArg	yellow
 =ClassMember	fg_310 # brown
 =GlobalVar	yellow
 =ClassDecl	bold blue
@@ -62,7 +62,7 @@
 
 	# higher level, ruby specific
 	":"		maybe_symbol
-#	"|"		proc_arg
+	"|"		proc_arg
 	"@"		class_member1
 
 # / / regex not allowed after terms
@@ -539,11 +539,12 @@ done
 
 :proc_arg ProcArg
 	*		rest		noeat
-	","		proc_arg_sep 	noeat
+	" ,"		proc_arg_sep	recolor=-1
 	"a-zA-Z_"	proc_arg
 	
 :proc_arg_sep Idle
-	*		proc_arg
+	*		proc_arg	noeat
+	" "		proc_arg_sep
 	
 :class_member1 Idle
 	*		rest		noeat
