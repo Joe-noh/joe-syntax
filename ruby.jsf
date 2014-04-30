@@ -16,6 +16,7 @@
 =Bad		bold red
 =Var		yellow
 =Brace		magenta
+=NameSpace      green
 
 =Symbol		red
 =SymbolEscape	bold red
@@ -56,7 +57,8 @@
 	"<"		maybe_inc
 	"$"		not_string	buffer
 	"%"		pstring
-	"a-zA-Z_"	ident		buffer
+	"A-Z"           maybe_namespace
+	"a-z_"  	ident		buffer
 
 	# higher level, ruby specific
 	":"		maybe_symbol
@@ -381,7 +383,7 @@ done
 	"break"		kw
 	"case"		kw
 	"catch"		kw
-	"class"		kw_class
+	"class"		kw
 	"def"		kw
 	"defined"	kw
 	"do"		kw
@@ -420,6 +422,7 @@ done
 	"when"		kw
 	"while"		kw
 	"yield"		kw
+
 	# quasi-keywords (Module or Kernel methods)
 	"require"	kw
 	"autoload"	kw
@@ -439,19 +442,9 @@ done
 :kw Keyword
 	*		rest		noeat
 
-:kw_class Keyword
+:maybe_namespace NameSpace
 	*		rest		noeat
-	" \t\n"		kw_class_space
-
-:kw_class_space Idle
-	*		rest		noeat
-	# first char should be uppercase letter
-	"a-zA-Z_"	kw_class_decl	noeat
-	" \t\n"		kw_class_space
-
-:kw_class_decl ClassDecl
-	*		rest		noeat
-	"a-zA-Z0-9_"	kw_class_decl
+	"A-Za-z"	maybe_namespace	recolor=-2
 
 :pstring Idle
 	*		match		noeat
