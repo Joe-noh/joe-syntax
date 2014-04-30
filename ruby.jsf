@@ -6,19 +6,19 @@
 # EOF2.
 
 =Idle
-=Comment	green
-=CommentLabel	bold green
+=Comment	fg_242
+=CommentLabel	bold fg_242
 =POD		green
-=Constant	cyan
+=Constant	fg_144
 =Escape		bold cyan
 =Type		bold
-=Keyword	bold
+=Keyword	cyan
 =Bad		bold red
 =Var		yellow
-=Brace		magenta
+=Brace		fg_223
 =NameSpace      green
 
-=Symbol		red
+=Symbol		fg_511
 =SymbolEscape	bold red
 =ProcArg	#yellow
 =ClassMember	fg_310 # brown
